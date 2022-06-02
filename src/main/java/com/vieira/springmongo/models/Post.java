@@ -1,5 +1,6 @@
 package com.vieira.springmongo.models;
 
+import com.vieira.springmongo.dtos.AuthorDto;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,10 +26,10 @@ public class Post implements Serializable {
     private String title;
     private String body;
 
-    private User author;
+    private AuthorDto author;
 
     @Builder
-    public Post(Date date, String title, String body, User author) {
+    public Post(Date date, String title, String body, AuthorDto author) {
         this.date = date;
         this.title = title;
         this.body = body;
