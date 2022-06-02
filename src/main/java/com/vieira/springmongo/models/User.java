@@ -3,6 +3,7 @@ package com.vieira.springmongo.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,7 +12,6 @@ import java.io.Serializable;
 
 @Document
 @Data
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User implements Serializable {
 
@@ -21,7 +21,10 @@ public class User implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     private String id;
+
+    @NonNull
     private String name;
+    @NonNull
     private String email;
 
 }

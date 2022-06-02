@@ -21,9 +21,9 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.deleteAll();
 
-        User U1 = new User("1", "Carlos Fernandez", "carlosfernandez@gmail.com");
-        User U2 = new User("2", "Maria Raspberry", "mariaraspberry@gmail.com");
-        User U3 = new User("3", "John Textor", "johntextor@outlook.com");
+        User U1 = new User("Carlos Fernandez", "carlosfernandez@gmail.com");
+        User U2 = new User("Maria Raspberry", "mariaraspberry@gmail.com");
+        User U3 = new User("John Textor", "johntextor@outlook.com");
         userRepository.saveAll(Arrays.asList(U1, U2, U3));
     }
 }
