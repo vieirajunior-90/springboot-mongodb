@@ -1,6 +1,7 @@
 package com.vieira.springmongo.controllers;
 
 import com.vieira.springmongo.dtos.UserDto;
+import com.vieira.springmongo.models.Post;
 import com.vieira.springmongo.models.User;
 import com.vieira.springmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,11 @@ public class UserController {
         user.setId(id);
         userService.update(user);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(user.getPosts());
     }
 }
