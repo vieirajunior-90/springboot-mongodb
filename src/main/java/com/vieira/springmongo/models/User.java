@@ -1,14 +1,14 @@
 package com.vieira.springmongo.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
+import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document
 @Data
@@ -26,5 +26,9 @@ public class User implements Serializable {
     private String name;
     @NonNull
     private String email;
+
+    @Setter(AccessLevel.NONE)
+    @DBRef(lazy = true)
+    private List<Post> posts = new ArrayList<>();
 
 }

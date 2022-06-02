@@ -54,5 +54,8 @@ public class TestConfig implements CommandLineRunner {
                 .build();
 
         postRepository.saveAll(Arrays.asList(P1, P2));
+
+        U1.getPosts().addAll(Arrays.asList(P1, P2));
+        userRepository.save(U1);
     }
 }
