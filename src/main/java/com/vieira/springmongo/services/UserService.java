@@ -32,6 +32,19 @@ public class UserService {
         User user = findById(id);
         userRepository.delete(user);
     }
+
+    @Transactional
+    public User update(User user) {
+        User newUser = findById(user.getId());
+        updateData(newUser, user);
+        return userRepository.save(newUser);
+    }
+
+    private void updateData(User newUser, User user) {
+        newUser.setName(user.getName());
+        newUser.setEmail(user.getEmail());
+    }
+
     public User fromDto(UserDto userDto) {
         return new User(userDto.name(), userDto.email());
     }
