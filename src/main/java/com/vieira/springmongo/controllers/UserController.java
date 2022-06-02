@@ -1,5 +1,6 @@
 package com.vieira.springmongo.controllers;
 
+import com.vieira.springmongo.dtos.UserDto;
 import com.vieira.springmongo.models.User;
 import com.vieira.springmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
@@ -18,7 +20,10 @@ public class UserController {
     @Autowired
     private UserService userService;
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.findAll());
+    public ResponseEntity<List<UserDto>> findAll() {
+        List<User> list = userService.findAll();
+        List<UserDto> listDto = list.stream()
+                .map(user -> new UserDto(user.getId(), user.getName(), user.getEmail())).toList();
+        return ResponseEntity.status(HttpStatus.OK).body(listDto);
     }
 }
