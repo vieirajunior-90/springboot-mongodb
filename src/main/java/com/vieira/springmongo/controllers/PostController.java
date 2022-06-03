@@ -35,7 +35,6 @@ public class PostController {
         List<Post> list = postService.findByTitleContainingIgnoreCase(text);
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }
-
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {

@@ -19,6 +19,7 @@ public class PostService {
     public List<Post> findAll() {
         return postRepository.findAll();
     }
+
     public Post findById(String id) {
         return postRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Post not found"));
     }
@@ -28,7 +29,8 @@ public class PostService {
         Post post = findById(id);
         postRepository.delete(post);
     }
+
     public List<Post> findByTitleContainingIgnoreCase(String text) {
-        return postRepository.findByTitleContainingIgnoreCase(text);
+        return postRepository.searchTitle(text);
     }
 }

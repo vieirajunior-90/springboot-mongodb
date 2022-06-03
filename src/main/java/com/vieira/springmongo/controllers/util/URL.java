@@ -1,6 +1,5 @@
 package com.vieira.springmongo.controllers.util;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
