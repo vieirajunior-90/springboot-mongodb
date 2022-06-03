@@ -28,4 +28,7 @@ public class PostService {
         Post post = findById(id);
         postRepository.delete(post);
     }
+    public List<Post> findByTitleContainingIgnoreCase(String text) {
+        return postRepository.findByTitleContainingIgnoreCase(text);
+    }
 }

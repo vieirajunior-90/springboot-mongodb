@@ -1,5 +1,6 @@
 package com.vieira.springmongo.controllers;
 
+import com.vieira.springmongo.controllers.util.URL;
 import com.vieira.springmongo.models.Post;
 import com.vieira.springmongo.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,15 @@ public class PostController {
         Post post = postService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(post);
     }
+
+    @GetMapping("/titlesearch")
+    public ResponseEntity<List<Post>> findByTitleContainingIgnoreCase
+            (@RequestParam(value = "text", defaultValue = "") String text) {
+        text = URL.decodeParam(text);
+        List<Post> list = postService.findByTitleContainingIgnoreCase(text);
+        return ResponseEntity.status(HttpStatus.OK).body(list);
+    }
+
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
