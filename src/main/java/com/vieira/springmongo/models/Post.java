@@ -1,5 +1,6 @@
 package com.vieira.springmongo.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.vieira.springmongo.dtos.AuthorDto;
 import com.vieira.springmongo.dtos.CommentDto;
 import lombok.*;
@@ -25,6 +26,7 @@ public class Post implements Serializable {
     @EqualsAndHashCode.Include
     private String id;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "GMT-3")
     private Date date;
     private String title;
     private String body;

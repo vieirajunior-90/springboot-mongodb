@@ -28,7 +28,8 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws ParseException {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        // SimpleDateFormat to LocalDateTime
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         userRepository.deleteAll();
@@ -41,22 +42,25 @@ public class TestConfig implements CommandLineRunner {
         userRepository.saveAll(Arrays.asList(U1, U2, U3));
 
         Post P1 = Post.builder()
-                .date(sdf.parse("21/03/2020"))
+                .date(sdf.parse("20/04/2020 06:12:21"))
                 .title("Partiu Viagem")
                 .body("Vou viajar para São Paulo, abraços!")
                 .author(AuthorDto.from(U1))
                 .build();
 
         Post P2 = Post.builder()
-                .date(sdf.parse("23/03/2020"))
+                .date(sdf.parse("20/04/2020 06:18:39"))
                 .title("Bom dia")
                 .body("Acordei feliz hoje!")
                 .author(AuthorDto.from(U1))
                 .build();
 
-        CommentDto C1 = new CommentDto("Boa viagem, amigo!", sdf.parse("21/03/2020"), AuthorDto.from(U2));
-        CommentDto C2 = new CommentDto("Aproveite", sdf.parse("22/03/2020"), AuthorDto.from(U3));
-        CommentDto C3 = new CommentDto("Tenha um ótimo dia!", sdf.parse("23/03/2020"), AuthorDto.from(U2));
+        CommentDto C1 = new CommentDto(
+                "Boa viagem, amigo!", sdf.parse("20/04/2020 06:13:11"), AuthorDto.from(U2));
+        CommentDto C2 = new CommentDto(
+                "Aproveite", sdf.parse("20/04/2020 06:14:58"), AuthorDto.from(U3));
+        CommentDto C3 = new CommentDto(
+                "Tenha um ótimo dia!", sdf.parse("20/04/2020 06:25:44"), AuthorDto.from(U2));
 
         P1.getComments().addAll(Arrays.asList(C1, C2));
         P2.getComments().add(C3);
