@@ -1,6 +1,7 @@
 package com.vieira.springmongo.config;
 
 import com.vieira.springmongo.dtos.AuthorDto;
+import com.vieira.springmongo.dtos.CommentDto;
 import com.vieira.springmongo.models.Post;
 import com.vieira.springmongo.models.User;
 import com.vieira.springmongo.repositories.PostRepository;
@@ -52,6 +53,13 @@ public class TestConfig implements CommandLineRunner {
                 .body("Acordei feliz hoje!")
                 .author(AuthorDto.from(U1))
                 .build();
+
+        CommentDto C1 = new CommentDto("Boa viagem, amigo!", sdf.parse("21/03/2020"), AuthorDto.from(U2));
+        CommentDto C2 = new CommentDto("Aproveite", sdf.parse("22/03/2020"), AuthorDto.from(U3));
+        CommentDto C3 = new CommentDto("Tenha um ótimo dia!", sdf.parse("23/03/2020"), AuthorDto.from(U2));
+
+        P1.getComments().addAll(Arrays.asList(C1, C2));
+        P2.getComments().add(C3);
 
         postRepository.saveAll(Arrays.asList(P1, P2));
 
